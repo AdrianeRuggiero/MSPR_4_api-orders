@@ -46,7 +46,7 @@ jobs:
       with:
         args: >
           -Dsonar.projectKey=AdrianeRuggiero_MSPR_4_api-orders
-          -Dsonar.projectName=API Orders
+          -Dsonar.organization=adrianeruggiero
           -Dsonar.sources=app
           -Dsonar.tests=tests
           -Dsonar.python.coverage.reportPaths=coverage.xml
