@@ -2,6 +2,7 @@ from typing import List, Optional
 from pymongo.collection import Collection
 from app.models.order import OrderCreate, OrderDB
 from bson import ObjectId
+from app.messaging.rabbitmq import publish_order_created
 
 
 class OrderService:
@@ -12,6 +13,7 @@ class OrderService:
         order_dict = order.dict()
         new_order = OrderDB(**order_dict)
         self.collection.insert_one(new_order.dict())
+        publish_order_created(new_order.dict())
         return new_order
 
     def get_order(self, order_id: str) -> Optional[OrderDB]:
