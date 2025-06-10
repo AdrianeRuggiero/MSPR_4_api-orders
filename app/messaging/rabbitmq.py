@@ -18,10 +18,11 @@ def publish_order_created(order_data: dict, channel=None):
     queue_name = "order_created"
     channel.basic_publish(
         exchange="",
-        routing_key=queue_name,
+        routing_key="order_created",
         body=json.dumps(order_data),
         properties=pika.BasicProperties(delivery_mode=2),
     )
 
     if close_connection:
         connection.close()
+
