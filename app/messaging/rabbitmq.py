@@ -15,6 +15,7 @@ def publish_order_created(order_data: dict, channel=None):
     else:
         close_connection = False
 
+    queue_name = "order_created"
     channel.basic_publish(
         exchange="",
         routing_key="order_created",
@@ -24,3 +25,4 @@ def publish_order_created(order_data: dict, channel=None):
 
     if close_connection:
         connection.close()
+
